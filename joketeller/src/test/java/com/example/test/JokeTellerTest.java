@@ -4,6 +4,10 @@ import com.example.JokeTeller;
 
 import org.junit.Test;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.isEmptyOrNullString;
+import static org.hamcrest.Matchers.not;
+
 public class JokeTellerTest {
 
     @Test
@@ -15,7 +19,7 @@ public class JokeTellerTest {
 
         for (int i = 0; i < iterations; i++) {
             String joke = jokeTeller.getJoke();
-            assert joke.length() != 0;
+            assertThat(joke, not(isEmptyOrNullString()));
         }
     }
 }
