@@ -3,9 +3,7 @@
           package="com.example.jokeactivity">
 
     <application
-        android:allowBackup="true"
-        android:label="@string/app_name"
-        android:supportsRtl="true">
+        android:label="@string/app_name">
         <activity
             android:name=".JokeActivity"
             android:theme="@style/Theme.AppCompat.Light.DarkActionBar">

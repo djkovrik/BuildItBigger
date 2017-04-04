@@ -8,11 +8,12 @@
 
     <TextView
         android:id="@+id/joke_text"
+        style="@style/Base.TextAppearance.AppCompat.Body2"
         android:layout_width="match_parent"
-        android:layout_marginStart="@dimen/joketext_margin"
-        android:layout_marginEnd="@dimen/joketext_margin"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginEnd="@dimen/joketext_margin"
+        android:layout_marginStart="@dimen/joketext_margin"
         android:gravity="center"/>
 
 </LinearLayout>
