@@ -8,10 +8,10 @@ import com.example.builditbigger.myapplication.backend.myApi.MyApi;
 import com.example.jokeactivity.JokeActivity;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
-import com.google.api.client.googleapis.services.AbstractGoogleClientRequest;
-import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
 
 import java.io.IOException;
+
+import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 
 public class EndpointsAsyncTask extends AsyncTask<Context, Void, String> {
 
@@ -23,15 +23,8 @@ public class EndpointsAsyncTask extends AsyncTask<Context, Void, String> {
     @Override
     protected String doInBackground(Context... params) {
         if (myApiService == null) {
-            MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(),
-                    new AndroidJsonFactory(), null)
-                    .setRootUrl("http://10.0.2.2:8080/_ah/api/")
-                    .setGoogleClientRequestInitializer(new GoogleClientRequestInitializer() {
-                        @Override
-                        public void initialize(AbstractGoogleClientRequest<?> abstractGoogleClientRequest) throws IOException {
-                            abstractGoogleClientRequest.setDisableGZipContent(true);
-                        }
-                    });
+            MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(), new AndroidJsonFactory(), null)
+                    .setRootUrl("https://builditbigger-163817.appspot.com/_ah/api/");
 
             myApiService = builder.build();
         }
@@ -49,6 +42,7 @@ public class EndpointsAsyncTask extends AsyncTask<Context, Void, String> {
     protected void onPostExecute(String joke) {
         Intent intent = new Intent(context, JokeActivity.class);
         intent.putExtra(JOKE_KEY, joke);
+        intent.setFlags(FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
     }
 }
