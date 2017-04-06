@@ -25,10 +25,11 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile project(path: ':joketeller')
-    compile project(path: ':displayjoke')
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.google.android.gms:play-services-ads:10.2.1'
     compile 'com.google.code.findbugs:jsr305:2.0.1'
+    compile 'com.google.api-client:google-api-client-android:1.19.0' exclude module: 'httpclient'
+    compile 'com.google.http-client:google-http-client-gson:1.19.0' exclude module: 'httpclient'
+    compile project(path: ':displayjoke')
     compile project(path: ':backend', configuration: 'android-endpoints')
 }
