@@ -7,3 +7,5 @@
 /.idea/
 joketeller.iml
 libs/
+/backend/*.iml
+/backend/build/
