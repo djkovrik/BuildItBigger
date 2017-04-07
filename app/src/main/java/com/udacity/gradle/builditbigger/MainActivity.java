@@ -1,13 +1,19 @@
 package com.udacity.gradle.builditbigger;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.jokeactivity.JokeActivity;
 
-public class MainActivity extends AppCompatActivity {
+
+public class MainActivity extends AppCompatActivity implements EndpointsAsyncTask.TaskFinishedCallback {
+
+    private static final String JOKE_KEY = "joke";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +45,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void tellJoke(View view) {
-        new EndpointsAsyncTask().execute(getApplicationContext());
+        new EndpointsAsyncTask().execute(this);
     }
 
 
+    @Override
+    public void onTaskFinished(String result) {
+        Context context = getApplicationContext();
+        Intent intent = new Intent(context, JokeActivity.class);
+        intent.putExtra(JOKE_KEY, result);
+        context.startActivity(intent);
+    }
 }
