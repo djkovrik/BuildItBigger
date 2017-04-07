@@ -8,25 +8,23 @@ import com.google.api.client.extensions.android.json.AndroidJsonFactory;
 
 import java.io.IOException;
 
-public class EndpointsAsyncTask extends AsyncTask<EndpointsAsyncTask.TaskFinishedCallback, Void, String> {
+public class EndpointsAsyncTask extends AsyncTask<Void, Void, String> {
 
     private static MyApi myApiService = null;
-    private static TaskFinishedCallback callback;
+    private TaskFinishedCallback callback;
 
-    interface TaskFinishedCallback {
-        void onTaskFinished(String result);
+    public EndpointsAsyncTask(TaskFinishedCallback callback) {
+        this.callback = callback;
     }
 
     @Override
-    protected String doInBackground(TaskFinishedCallback... params) {
+    protected String doInBackground(Void... params) {
         if (myApiService == null) {
             MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(), new AndroidJsonFactory(), null)
                     .setRootUrl("https://builditbigger-163817.appspot.com/_ah/api/");
 
             myApiService = builder.build();
         }
-
-        callback = params[0];
 
         try {
             return myApiService.getJoke().execute().getData();

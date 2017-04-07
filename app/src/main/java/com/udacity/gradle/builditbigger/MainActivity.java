@@ -11,7 +11,7 @@ import android.view.View;
 import com.example.jokeactivity.JokeActivity;
 
 
-public class MainActivity extends AppCompatActivity implements EndpointsAsyncTask.TaskFinishedCallback {
+public class MainActivity extends AppCompatActivity implements TaskFinishedCallback {
 
     private static final String JOKE_KEY = "joke";
 
@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements EndpointsAsyncTas
     }
 
     public void tellJoke(View view) {
-        new EndpointsAsyncTask().execute(this);
+        new EndpointsAsyncTask(this).execute();
     }
 
 
