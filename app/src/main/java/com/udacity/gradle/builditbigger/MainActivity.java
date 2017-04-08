@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 
 import com.example.jokeactivity.JokeActivity;
 
@@ -14,11 +16,16 @@ import com.example.jokeactivity.JokeActivity;
 public class MainActivity extends AppCompatActivity implements TaskFinishedCallback {
 
     private static final String JOKE_KEY = "joke";
+    private ProgressBar progressBar;
+    private RelativeLayout mainView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        progressBar = (ProgressBar) findViewById(R.id.loading_indicator);
+        mainView = (RelativeLayout) findViewById(R.id.main_view);
     }
 
 
@@ -27,6 +34,12 @@ public class MainActivity extends AppCompatActivity implements TaskFinishedCallb
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        showMainView();
     }
 
     @Override
@@ -45,6 +58,7 @@ public class MainActivity extends AppCompatActivity implements TaskFinishedCallb
     }
 
     public void tellJoke(View view) {
+        showLoadingIndicator();
         new EndpointsAsyncTask(this).execute();
     }
 
@@ -55,5 +69,15 @@ public class MainActivity extends AppCompatActivity implements TaskFinishedCallb
         Intent intent = new Intent(context, JokeActivity.class);
         intent.putExtra(JOKE_KEY, result);
         context.startActivity(intent);
+    }
+
+    private void showMainView() {
+        progressBar.setVisibility(View.INVISIBLE);
+        mainView.setVisibility(View.VISIBLE);
+    }
+
+    private void showLoadingIndicator() {
+        progressBar.setVisibility(View.VISIBLE);
+        mainView.setVisibility(View.INVISIBLE);
     }
 }
