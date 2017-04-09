@@ -21,7 +21,7 @@ public class EndpointsAsyncTaskTest {
             = new ActivityTestRule<>(MainActivity.class);
 
     @Test
-    public void asyncTaskLoadsJoke() throws Exception {
+    public void testAsyncTaskLoadsJoke() throws Exception {
 
         // Assign
         EndpointsAsyncTask testTask = new EndpointsAsyncTask(mActivityActivityTestRule.getActivity());

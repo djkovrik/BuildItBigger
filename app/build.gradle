@@ -40,3 +40,39 @@ dependencies {
     compile project(path: ':displayjoke')
     compile project(path: ':backend', configuration: 'android-endpoints')
 }
+
+// Testing tasks
+task startAppEngine(dependsOn: ':backend:appengineRun') {
+    doLast {
+        println "---> Local GCE dev server started!"
+    }
+}
+
+task runLocalGCETests(dependsOn: 'startAppEngine') {
+    group "App Local GCE test"
+    description "Starts the GCE dev server, runs all the Android tests, and shuts down the dev server."
+
+    project(':backend').afterEvaluate { backend ->
+        backend.extensions.appengine.daemon = true
+    }
+
+    finalizedBy {
+        runTests
+    }
+}
+
+task runTests(dependsOn: ':app:connectedAndroidTest') {
+    doLast {
+        println "---> Android testing finished!"
+    }
+
+    finalizedBy {
+        stopAppEngine
+    }
+}
+
+task stopAppEngine(dependsOn: ':backend:appengineStop') {
+    doLast {
+        println "---> Local GCE dev server stopped!"
+    }
+}
