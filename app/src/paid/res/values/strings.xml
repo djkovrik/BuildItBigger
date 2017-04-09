@@ -1,3 +1,4 @@
+<!--suppress XmlUnboundNsPrefix -->
 <resources>
     <string name="app_name">Build it Bigger - Paid version</string>
     <string name="instructions">Press the button for a delicious joke!</string>

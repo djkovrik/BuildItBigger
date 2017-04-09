@@ -17,7 +17,7 @@ import static junit.framework.TestCase.assertNotNull;
 public class EndpointsAsyncTaskTest {
 
     @Rule
-    public ActivityTestRule<MainActivity> mActivityActivityTestRule
+    public final ActivityTestRule<MainActivity> mActivityActivityTestRule
             = new ActivityTestRule<>(MainActivity.class);
 
     @Test

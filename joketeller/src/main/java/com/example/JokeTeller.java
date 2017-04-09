@@ -6,8 +6,8 @@ import java.util.Random;
 
 public class JokeTeller {
 
-    private static List<String> jokes = new ArrayList<>();
-    private static Random rand = new Random();
+    private static final List<String> jokes = new ArrayList<>();
+    private static final Random rand = new Random();
 
     static {
         jokes.add("When Chuck Norris enters the room, even the chairs are standing up.");

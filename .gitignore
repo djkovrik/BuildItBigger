@@ -1,11 +1,8 @@
 .gradle
 /local.properties
-.DS_Store
 /build
-/captures
 /*.iml
 /.idea/
 joketeller.iml
-libs/
 /backend/*.iml
 /backend/build/

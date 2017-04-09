@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity implements TaskFinishedCallb
     private ProgressBar progressBar;
     private RelativeLayout mainView;
     private InterstitialAd interstitialAd;
-    boolean resumeFromAd = false;
+    private boolean resumeFromAd = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +67,7 @@ public class MainActivity extends AppCompatActivity implements TaskFinishedCallb
         return super.onOptionsItemSelected(item);
     }
 
+    @SuppressWarnings("UnusedParameters")
     public void tellJoke(View view) {
 
         showLoadingIndicator();
@@ -96,6 +97,7 @@ public class MainActivity extends AppCompatActivity implements TaskFinishedCallb
         context.startActivity(intent);
     }
 
+    @SuppressWarnings("WeakerAccess")
     void requestNewInterstitial() {
         AdRequest request = new AdRequest.Builder()
                 .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
@@ -104,12 +106,12 @@ public class MainActivity extends AppCompatActivity implements TaskFinishedCallb
         interstitialAd.loadAd(request);
     }
 
-    void showMainView() {
+    private void showMainView() {
         progressBar.setVisibility(View.INVISIBLE);
         mainView.setVisibility(View.VISIBLE);
     }
 
-    void showLoadingIndicator() {
+    private void showLoadingIndicator() {
         progressBar.setVisibility(View.VISIBLE);
         mainView.setVisibility(View.INVISIBLE);
     }

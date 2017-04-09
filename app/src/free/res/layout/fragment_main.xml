@@ -35,6 +35,7 @@
             android:onClick="tellJoke"
             android:text="@string/button_text"/>
 
+        <!--suppress CheckTagEmptyBody -->
         <com.google.android.gms.ads.AdView
             android:id="@+id/adView"
             android:layout_width="wrap_content"
